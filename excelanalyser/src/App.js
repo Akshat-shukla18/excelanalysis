@@ -721,13 +721,21 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
     setOutlierShowOnlyFlagged(false);
   };
 
+
+//
+///
+////
+/////
+/////start of render////
+
+
   return (
     <div className="app">
       <div className="container">
         <div className="header-section">
           <div className="header-text">
-            <h1>E-commerce Sales Dashboard</h1>
-            <p>Upload CSV and analyze your sales data with advanced filters</p>
+            <h1>Excel Data AnalyzerDashboard</h1>
+            <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
           </div>
           {metrics && (
             <div className="header-actions">
