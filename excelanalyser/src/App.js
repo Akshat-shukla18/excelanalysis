@@ -213,6 +213,7 @@ function App() {
       setData(ds);
       setDateRange('all');
       setSelectedCategory('all');
+      // set generic defaults
       initGenericMode(ds);
     } catch (err) {
       setError('Failed to apply selection: ' + (err?.message || String(err)));
