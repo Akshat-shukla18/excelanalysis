@@ -4,7 +4,7 @@ import { Upload, DollarSign, ShoppingCart, TrendingUp, Package, Filter, Download
 import Papa from 'papaparse';
 import './App.css';
 import VisualBuilder from './components/VisualBuilder';
-
+import Navbar from "./components/Navbar";
 function App() {
   const [data, setData] = useState(null);
   const [fileName, setFileName] = useState('');
@@ -731,10 +731,14 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
   return (
     <div className="app">
+       <Navbar />
+
+    {/* Main Content */}
+    <div className="container" style={{ marginTop: "80px" }}>
       <div className="container">
         <div className="header-section">
           <div className="header-text">
-            <h1>Excel Data AnalyzerDashboard</h1>
+            <h1>Data Analyzer-Dashboard</h1>
             <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
           </div>
           {metrics && (
@@ -1383,6 +1387,7 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

@@ -1,0 +1,92 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.navbar.light {
+  background: rgba(255, 255, 255, 0.8);
+  color: #111;
+}
+
+.navbar.dark {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.nav-btn.secondary {
+  background: transparent;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+}
