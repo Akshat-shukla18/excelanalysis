@@ -1,11 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Upload, DollarSign, ShoppingCart, TrendingUp, Package, Filter, Download, Calendar, Users, Award, RefreshCw } from 'lucide-react';
 import Papa from 'papaparse';
+
 import './App.css';
 import VisualBuilder from './components/VisualBuilder';
 import Navbar from "./components/Navbar";
-function App() {
+import Login from "./pages/Login";
+function Dashboard() {
   const [data, setData] = useState(null);
   const [fileName, setFileName] = useState('');
   const [error, setError] = useState('');
@@ -1390,6 +1395,34 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
       </div>
       </div>
     </div>
+  );
+}
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div>Loading...</div>;
+  return user ? children : <Navigate to="/" />;
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* LOGIN PAGE */}
+          <Route path="/" element={<Login />} />
+          
+          {/* DASHBOARD PAGE */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

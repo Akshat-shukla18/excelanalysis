@@ -1,10 +1,20 @@
 import React, { useState } from "react";
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import "./Navbar.css";
-import { Home, Download, Sun, Moon, Github, HelpCircle, Menu, X } from "lucide-react";
+import { Home, Download, Sun, Moon, Github, HelpCircle, Menu, X, LogOut, User } from "lucide-react";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -27,9 +37,17 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="navbar-menu desktop-menu">
-          <li><a href="#dashboard" className="nav-link active">Dashboard</a></li>
-          <li><a href="#analytics" className="nav-link">Analytics</a></li>
-          <li><a href="#charts" className="nav-link">Charts</a></li>
+          {!user ? (
+            <>
+              <li><a href="/" className="nav-link">Login</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href="/dashboard" className="nav-link active">Dashboard</a></li>
+              <li><a href="#analytics" className="nav-link">Analytics</a></li>
+              <li><a href="#charts" className="nav-link">Charts</a></li>
+            </>
+          )}
           <li>
             <button className="nav-link">Help</button>
           </li>
@@ -49,9 +67,18 @@ const Navbar = () => {
             <Github size={20} />
           </a>
 
-          <button className="nav-btn primary">
-            <HelpCircle size={20} />
-          </button>
+          {user ? (
+            <div className="user-menu">
+              <span className="user-name">{user.email || user.displayName || 'User'}</span>
+              <button className="nav-btn primary" onClick={handleLogout}>
+                <LogOut size={20} />
+              </button>
+            </div>
+          ) : (
+            <button className="nav-btn primary" onClick={() => navigate('/')}>
+              <HelpCircle size={20} />
+            </button>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -63,9 +90,16 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="mobile-menu">
-          <a href="#dashboard" onClick={toggleMenu}>Dashboard</a>
-          <a href="#analytics" onClick={toggleMenu}>Analytics</a>
-          <a href="#charts" onClick={toggleMenu}>Charts</a>
+          {!user ? (
+            <a href="/" onClick={toggleMenu}>Login</a>
+          ) : (
+            <>
+              <a href="/dashboard" onClick={toggleMenu}>Dashboard</a>
+              <a href="#analytics" onClick={toggleMenu}>Analytics</a>
+              <a href="#charts" onClick={toggleMenu}>Charts</a>
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          )}
           <a href="#help" onClick={toggleMenu}>Help</a>
         </div>
       )}
