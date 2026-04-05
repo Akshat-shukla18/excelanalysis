@@ -12,9 +12,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
-    navigate('/');
-  };
+  const confirmLogout = window.confirm(
+    "Are you sure you want to logout?"
+  );
+
+  if (!confirmLogout) return;
+
+  await logout();
+  navigate('/');
+};
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -24,6 +30,23 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const getInitials = (user) => {
+  if (!user) return "?";
+
+  if (user.displayName) {
+    return user.displayName
+      .split(" ")
+      .map(name => name[0])
+      .join("")
+      .toUpperCase();
+  }
+
+  if (user.email) {
+    return user.email[0].toUpperCase();
+  }
+
+  return "?";
+};
 
   return (
     <nav className={`navbar ${darkMode ? "dark" : "light"}`}>
@@ -43,34 +66,38 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li><a href="/dashboard" className="nav-link active">Dashboard</a></li>
-              <li><a href="#analytics" className="nav-link">Analytics</a></li>
-              <li><a href="#charts" className="nav-link">Charts</a></li>
+             <div className="navbar-quote">
+    Analyze smarter, not harder.
+  </div>
+              
             </>
           )}
-          <li>
-            <button className="nav-link">Help</button>
-          </li>
+          
         </ul>
 
         {/* Actions */}
         <div className="navbar-actions">
-          <button className="nav-btn secondary">
-            <Download size={20} />
-          </button>
+          
 
           <button className="nav-btn secondary" onClick={toggleDarkMode}>
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          <a href="https://github.com" className="nav-btn secondary" target="_blank" rel="noreferrer">
-            <Github size={20} />
-          </a>
-
-          {user ? (
+           <a
+  href="https://github.com/Akshat-shukla18/excelanalysis"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="nav-btn"
+>
+  <Github size={22} />
+</a> 
+              {user ? (
             <div className="user-menu">
-              <span className="user-name">{user.email || user.displayName || 'User'}</span>
-              <button className="nav-btn primary" onClick={handleLogout}>
+              {/* <span className="user-name">{user.email || user.displayName || 'User'}</span> */}
+            <div className="user-avatar">
+  {getInitials(user)}
+</div>
+             <button className="nav-btn primary" onClick={handleLogout}>
                 <LogOut size={20} />
               </button>
             </div>

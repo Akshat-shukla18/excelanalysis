@@ -704,27 +704,15 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
     URL.revokeObjectURL(url);
   };
 
-  const resetFilters = () => {
-    setDateRange('all');
-    setSelectedCategory('all');
-    setSortBy('revenue');
-    setTopN({ mode: 'top', n: 10 });
-    setSelectedProduct('all');
-    setBuilderFilter(null);
-    setDqDropExactDup(false);
-    setDqDedupColumn('');
-    setDqDedupKeys([]);
-    setDqDupMode('exclude');
-    setDqShowOnlyFlagged(false);
-    setOutlierEnabled(false);
-    setOutlierColumn('');
-    setOutlierSensitivity('1.5');
-    setOutlierMethod('iqr');
-    setZscoreThreshold('3');
-    setOutlierGroupBy('');
-    setOutlierMode('exclude');
-    setOutlierShowOnlyFlagged(false);
-  };
+ const resetFilters = () => {
+  const confirmReset = window.confirm(
+    "Are you sure you want to reset?\n\nAll filters and analysis will be lost."
+  );
+
+  if (confirmReset) {
+    window.location.reload(); // 🔥 full refresh
+  }
+};
 
 
 //
@@ -743,7 +731,7 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
       <div className="container">
         <div className="header-section">
           <div className="header-text">
-            <h1>Data Analyzer-Dashboard</h1>
+            <h1>Data Workspace • Insights & Analysis</h1>
             <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
           </div>
           {metrics && (
@@ -766,20 +754,29 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
         <div className="upload-card">
           <label className="upload-area">
-            <Upload size={48} className="upload-icon" />
-            <span className="upload-text">
-              {fileName || 'Click to upload CSV or Excel (.xlsx)'}
-            </span>
-            <span className="upload-subtext">
-              Supports: CSV and Excel; preview and profile before applying
-            </span>
-            <input
-              type="file"
-              accept=".csv,.xlsx,.xls"
-              onChange={handleFileUpload}
-              className="file-input"
-            />
-          </label>
+  <div className="upload-inner">
+    <Upload size={52} className="upload-icon" />
+
+    <h3 className="upload-title">
+      {fileName ? fileName : "Drop your file here"}
+    </h3>
+
+    <p className="upload-text">
+      or <span>click to browse</span>
+    </p>
+
+    <p className="upload-subtext">
+      CSV • XLSX • Max 10MB
+    </p>
+  </div>
+
+  <input
+    type="file"
+    accept=".csv,.xlsx,.xls"
+    onChange={handleFileUpload}
+    className="file-input"
+  />
+</label>
           {error && (
             <div className="error-message">
               {error}

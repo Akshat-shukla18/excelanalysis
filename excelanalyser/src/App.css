@@ -6,11 +6,15 @@
 
 .app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #02121b 0%,rgb(124, 45, 45) 50%, #e2e8f0 100%);
+  /* background: linear-gradient(135deg, #02121b 0%,rgb(124, 45, 45) 50%, #e2e8f0 100%); */
   padding: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+     background: linear-gradient(135deg, #02121b 0%, rgb(124, 45, 45) 50%, #e2e8f0 100%);
+}
+body.dark-mode .app {
+  background: linear-gradient(135deg, #020c1b 0%, #0a192f 50%, #020617 100%);
 }
 
 @media (min-width: 768px) {
@@ -121,53 +125,92 @@
 }
 
 .upload-area {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #cbd5e1;
-  border-radius: 8px;
-  padding: 2rem;
+
+  border-radius: 16px;
+  padding: 3rem;
   cursor: pointer;
-  transition: all 0.3s;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+
+  transition: all 0.35s ease;
+  overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .upload-area {
-    padding: 3rem;
-  }
+/* 🔥 Gradient glowing border effect */
+.upload-area::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, #00f5ff, #7c3aed, #ff4ecd);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+/* Inner content stays above */
+.upload-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Hover effect */
+.upload-area:hover::before {
+  opacity: 0.6;
 }
 
 .upload-area:hover {
-  border-color: #3b82f6;
-  background: #f8fafc;
+  transform: translateY(-5px) scale(1.01);
+  border-color: transparent;
 }
 
+/* Icon */
 .upload-icon {
-  color: #94a3b8;
+  color: #60a5fa;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
 }
 
+.upload-area:hover .upload-icon {
+  transform: translateY(-5px) scale(1.1);
+  color: #22d3ee;
+}
+
+/* Title */
+.upload-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.3rem;
+}
+
+/* Click text */
 .upload-text {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.upload-text span {
+  color: #38bdf8;
   font-weight: 500;
-  color: #334155;
-  margin-bottom: 0.5rem;
-  text-align: center;
 }
 
-@media (min-width: 768px) {
-  .upload-text {
-    font-size: 1.125rem;
-  }
-}
-
+/* Subtext */
 .upload-subtext {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: #64748b;
-  text-align: center;
+  margin-top: 0.4rem;
 }
 
+/* Hide input */
 .file-input {
   display: none;
 }
