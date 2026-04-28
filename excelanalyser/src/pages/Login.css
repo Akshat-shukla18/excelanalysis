@@ -14,9 +14,16 @@ body {
 /* Main Section */
 section {
   position: relative;
+  
   width: 100%;
   min-height: 100vh;   /* ✅ changed */
-  background: linear-gradient(135deg, #0a192f, #020c1b);
+   background:
+    linear-gradient(135deg, rgba(10,25,47,0.8), rgba(2,12,27,0.9)),
+    url('./jj.avif');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
