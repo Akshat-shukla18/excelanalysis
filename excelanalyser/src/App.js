@@ -1,12 +1,21 @@
 import React, { useState, useMemo, useEffect } from 'react';
+<<<<<<< HEAD
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+=======
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+
+import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
+>>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 import { Upload, DollarSign, ShoppingCart, TrendingUp, Package, Filter, Download, Calendar, Users, Award, RefreshCw } from 'lucide-react';
 import Papa from 'papaparse';
+
 import './App.css';
 import Navbar from './components/Navbar';
 import VisualBuilder from './components/VisualBuilder';
-
-function App() {
+import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+function Dashboard() {
   const [data, setData] = useState(null);
   const [fileName, setFileName] = useState('');
   const [error, setError] = useState('');
@@ -700,27 +709,15 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
     URL.revokeObjectURL(url);
   };
 
-  const resetFilters = () => {
-    setDateRange('all');
-    setSelectedCategory('all');
-    setSortBy('revenue');
-    setTopN({ mode: 'top', n: 10 });
-    setSelectedProduct('all');
-    setBuilderFilter(null);
-    setDqDropExactDup(false);
-    setDqDedupColumn('');
-    setDqDedupKeys([]);
-    setDqDupMode('exclude');
-    setDqShowOnlyFlagged(false);
-    setOutlierEnabled(false);
-    setOutlierColumn('');
-    setOutlierSensitivity('1.5');
-    setOutlierMethod('iqr');
-    setZscoreThreshold('3');
-    setOutlierGroupBy('');
-    setOutlierMode('exclude');
-    setOutlierShowOnlyFlagged(false);
-  };
+ const resetFilters = () => {
+  const confirmReset = window.confirm(
+    "Are you sure you want to reset?\n\nAll filters and analysis will be lost."
+  );
+
+  if (confirmReset) {
+    window.location.reload(); // 🔥 full refresh
+  }
+};
 
 
 //
@@ -731,12 +728,22 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
 
   return (
+<<<<<<< HEAD
 <div className={`app ${darkMode ? 'dark' : ''}`}>
 <Navbar darkMode={darkMode} onDarkModeChange={setDarkMode} />
       <div className="container" id="main-content">
         <div className="header-section" id="dashboard">
+=======
+    <div className="app">
+       <Navbar />
+
+    {/* Main Content */}
+    <div className="container" style={{ marginTop: "80px" }}>
+      <div className="container">
+        <div className="header-section">
+>>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
           <div className="header-text">
-            <h1>Excel Data AnalyzerDashboard</h1>
+            <h1>Data Workspace • Insights & Analysis</h1>
             <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
           </div>
           {metrics && (
@@ -759,20 +766,29 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
         <div className="upload-card">
           <label className="upload-area">
-            <Upload size={48} className="upload-icon" />
-            <span className="upload-text">
-              {fileName || 'Click to upload CSV or Excel (.xlsx)'}
-            </span>
-            <span className="upload-subtext">
-              Supports: CSV and Excel; preview and profile before applying
-            </span>
-            <input
-              type="file"
-              accept=".csv,.xlsx,.xls"
-              onChange={handleFileUpload}
-              className="file-input"
-            />
-          </label>
+  <div className="upload-inner">
+    <Upload size={52} className="upload-icon" />
+
+    <h3 className="upload-title">
+      {fileName ? fileName : "Drop your file here"}
+    </h3>
+
+    <p className="upload-text">
+      or <span>click to browse</span>
+    </p>
+
+    <p className="upload-subtext">
+      CSV • XLSX • Max 10MB
+    </p>
+  </div>
+
+  <input
+    type="file"
+    accept=".csv,.xlsx,.xls"
+    onChange={handleFileUpload}
+    className="file-input"
+  />
+</label>
           {error && (
             <div className="error-message">
               {error}
@@ -1386,7 +1402,36 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
           </div>
         )}
       </div>
+      </div>
     </div>
+  );
+}
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div>Loading...</div>;
+  return user ? children : <Navigate to="/" />;
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* LOGIN PAGE */}
+          <Route path="/" element={<Login />} />
+          
+          {/* DASHBOARD PAGE */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

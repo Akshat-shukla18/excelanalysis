@@ -1,84 +1,131 @@
-# E-commerce Dashboard – Excel & Profiling Enhancements
+# 🚀 Excel Analysis Platform
 
-This app now supports:
-- Excel (.xlsx/.xls) import with sheet selection, optional A1 range, and header-row index.
-- Data profiling (type inference, distinct counts, blanks, outliers, duplicates).
-- Top/Bottom N control for top products.
-- Scenario snapshots (save/apply filter states).
-- Export of filtered data to Excel.
+A modern, interactive **data analysis dashboard** built with React that allows users to upload Excel/CSV files, explore data, and generate insights instantly.
 
-Quick start
-- Install dependencies: `npm install` (adds `xlsx`).
-- Run: `npm start` and open `http://localhost:3000`.
-- Upload a CSV or Excel file. For Excel, select the sheet, optionally enter an A1 range, choose the header row, preview, then click Apply.
+🔗 **Live Repository:** https://github.com/Akshat-shukla18/excelanalysis
 
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ✨ Features
 
-## Available Scripts
+### 📂 Smart File Upload
 
-In the project directory, you can run:
+* Upload **CSV, XLSX, XLS** files
+* Select specific **sheets**
+* Define **custom ranges (A1 format)**
+* Choose **header row dynamically**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📊 Data Profiling Engine
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Get instant insights about your dataset:
 
-### `npm test`
+* Data type detection (number, text, date)
+* Missing values & blanks analysis
+* Distinct value counts
+* Duplicate detection
+* Outlier identification
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### 📈 Advanced Analytics
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Top/Bottom **N filtering**
+* Dynamic filtering & sorting
+* Interactive data exploration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🧠 Scenario Management
 
-### `npm run eject`
+* Save filter states as **snapshots**
+* Reapply scenarios instantly
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📤 Export Functionality
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Export filtered datasets back to **Excel**
+* Clean and structured output
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* **Frontend:** React.js
+* **Data Processing:** xlsx
+* **Styling:** Custom CSS (glassmorphism + modern UI)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## ⚡ Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 1. Install dependencies
 
-### Analyzing the Bundle Size
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 2. Run the app
 
-### Making a Progressive Web App
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Open 👉 http://localhost:3000
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🧪 How to Use
 
-### Deployment
+1. Upload a CSV or Excel file
+2. Select sheet (for Excel files)
+3. Optionally define range & header row
+4. Preview your data
+5. Apply filters & explore insights
+6. Export results
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🎯 Project Vision
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is built to:
+
+* Simplify **data analysis for non-technical users**
+* Provide a **lightweight alternative to Excel tools**
+* Serve as a foundation for **AI-powered insights (future scope)**
+
+---
+
+## 🚀 Future Enhancements
+
+* AI-based data summaries
+* Chart & graph visualizations
+* User authentication & saved datasets
+* Real-time collaboration
+
+---
+
+## 👨‍💻 Author
+
+**Akshat Shukla**
+B.Tech IT | MERN Stack Developer
+
+🔗 GitHub: https://github.com/Akshat-shukla18
+
+---
+
+## ⭐ Support
+
+If you like this project:
+
+* Star ⭐ the repository
+* Share it with others
+* Contribute to improvements
+
+---
+
+## 📌 Note
+
+This project is actively evolving with new features and UI improvements aimed at making it **production-ready and client-deployable**.

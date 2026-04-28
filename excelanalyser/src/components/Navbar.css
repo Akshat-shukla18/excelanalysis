@@ -1,0 +1,172 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+/* Base navbar (shared improvements) */
+.navbar {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.3s ease;
+}
+
+/* 🌞 Light Theme */
+.navbar.light {
+  background: rgba(255, 255, 255, 0.65);
+  color: #0f172a; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.navbar.dark {
+  background: rgba(2, 6, 23, 0.75); /* navy instead of black */
+  color: #e2e8f0; /* soft white */
+
+  /* soft blue glow depth */
+  box-shadow: 0 4px 25px rgba(59, 130, 246, 0.12);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.nav-btn.secondary {
+  background: transparent;
+}
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #64ffda, #3b82f6);
+  color: #0a192f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navbar-quote {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+
+  /* 🔵 Smooth blue gradient */
+  background: linear-gradient(90deg, #080439, #3b82f6, #02045b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* ✨ Controlled glow layers */
+  text-shadow:
+    0 0 6px rgba(59, 130, 246, 0.4),
+    0 0 12px rgba(99, 102, 241, 0.25);
+
+  /* 🎯 Smooth animation */
+  animation: glowShift 5s ease-in-out infinite;
+
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* Gradient flow */
+@keyframes glowShift {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* 🖱️ Hover – subtle pop */
+.navbar-quote:hover {
+  transform: translateY(-1px) scale(1.05);
+
+  text-shadow:
+    0 0 10px rgba(59, 130, 246, 0.7),
+    0 0 18px rgba(99, 102, 241, 0.45),
+    0 0 28px rgba(147, 197, 253, 0.3);
+}
+
+.user-avatar:hover {
+  transform: scale(1.1);
+}
+.navbar-toggle {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+}
