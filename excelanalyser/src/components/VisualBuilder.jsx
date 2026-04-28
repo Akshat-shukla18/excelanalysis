@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState , useEffect} from 'react';
 import { ResponsiveContainer, BarChart, Bar, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#ef4444', '#84cc16'];
@@ -22,16 +22,17 @@ function VisualBuilder({ dataset, onFilterSelect }) {
   const headers = useMemo(() => dataset?.headers ?? [], [dataset]);
 const rows = useMemo(() => dataset?.rows ?? [], [dataset]);
 
-  const numericFields = useMemo(() => inferNumericFields(headers, rows), [headers, rows]);
-
+const numericFields = useMemo(() => {
+  return inferNumericFields(headers, rows);
+}, [headers, rows]);
   const [xField, setXField] = useState(() => headers[0] || '');
- const [yField, setYField] = useState('');
+const [yField, setYField] = useState('');
 
-useMemo(() => {
+useEffect(() => {
   if (!yField && (numericFields.length || headers.length)) {
     setYField(numericFields[0] || headers[0]);
   }
-}, [numericFields, headers]);
+}, [numericFields, headers, yField]);
   const [agg, setAgg] = useState('sum');
   const [chartType, setChartType] = useState('bar'); // bar | line | area | pie
 
