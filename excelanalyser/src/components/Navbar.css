@@ -5,7 +5,13 @@
   --text-light: #0f172a;
   --text-dark: #e2e8f0;
 
-  --glass-light: rgba(255, 255, 255, 0.6);
+  --glass-light: linear-gradient(
+    135deg,
+    #0e264b,
+    #d6932f,
+    #64b1e8,
+    #0f264a
+  );
   --glass-dark: rgba(2, 6, 23, 0.75);
 
   --border-light: rgba(255, 255, 255, 0.25);

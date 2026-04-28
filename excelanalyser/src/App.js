@@ -1375,6 +1375,8 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
             <Upload size={64} className="empty-icon" />
             <h3>No Data Uploaded</h3>
             <p>Upload a CSV file with your e-commerce data to see visualizations</p>
+            <div className="expected-columns-container">
+            <div className="expected-columns-wrapper">
             <div className="expected-columns">
               <p><strong>Expected CSV columns:</strong></p>
               <ul>
@@ -1386,6 +1388,8 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
                 <li>Profit (optional)</li>
                 <li>Customer/User (optional)</li>
               </ul>
+            </div>
+            </div>
             </div>
           </div>
         )}

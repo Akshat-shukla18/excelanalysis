@@ -40,7 +40,7 @@ body.dark-mode .app {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding-top: 1rem;
 }
 
 /* Navbar Styles */
@@ -499,7 +499,7 @@ body.dark-mode .app {
 }
 
 .app.dark .filter-group label {
-  color: #94a3b8;
+  color: #e6e9ed;
 }
 
 .filter-group select {
@@ -652,7 +652,7 @@ body.dark-mode .app {
 
 .chart-card h3 {
   margin-bottom: 1rem;
-  color: #1e293b;
+  color: #305285;
   font-size: 1.25rem;
 }
 
@@ -765,7 +765,7 @@ td {
 }
 
 .app.dark .preview-table {
-  border-color: #475569;
+  border-color: #031329;
 }
 
 /* Empty State */
@@ -789,16 +789,17 @@ td {
 .empty-state h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #1e293b;
+  color:#26dcba;
 }
 
 .app.dark .empty-state h3 {
-  color: #e2e8f0;
+  color: #d2d8df;
 }
 
-.expected-columns {
+/* .expected-columns {
   max-width: 500px;
   margin: 0 auto;
+  color:#00ff00
 }
 
 .expected-columns ul {
@@ -808,8 +809,88 @@ td {
 
 .expected-columns li {
   padding: 0.25rem 0;
+} */
+.expected-columns-container {
+  display: flex;
+  justify-content: center;   /* horizontal */
+  align-items: center;       /* vertical (optional) */
+  width: 100%;
+  margin-top: 40px;          /* spacing from top */
+}
+.expected-columns-wrapper {
+  padding: 1.5px; /* controls border thickness */
+  border-radius: 16px;
+
+  background: linear-gradient(
+    135deg,
+    #0e264b,
+    #60a5fa,
+    #881b1b,
+    #0f264a
+  );
+
+  background-size: 300% 400%;
+  animation: borderFlow 6s ease infinite;
+
+  width: fit-content;
+  max-width: 100%;
 }
 
+/* ===== INNER CONTENT ===== */
+.expected-columns {
+  background: linear-gradient(
+    135deg,
+    #0e264b,
+    #60a5fa,
+    #76e0cf,
+    #0f264a
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 14px;
+  padding: 18px 22px;
+
+  color: #0f172a;
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.4),
+    0 8px 25px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== TITLE ===== */
+.expected-columns p {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ===== LIST ===== */
+.expected-columns ul {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.expected-columns li {
+  font-size: 14px;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.expected-columns li:hover {
+  transform: translateX(4px);
+  color: #2563eb;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 /* Responsive */
 @media (max-width: 768px) {
   .charts-grid {
