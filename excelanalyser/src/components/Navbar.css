@@ -1,159 +1,226 @@
+/* ===== ROOT VARIABLES (Design System) ===== */
+:root {
+  --primary: #4f46e5;
+  --blue: #3b82f6;
+  --text-light: #0f172a;
+  --text-dark: #e2e8f0;
+
+  --glass-light: rgba(255, 255, 255, 0.6);
+  --glass-dark: rgba(2, 6, 23, 0.75);
+
+  --border-light: rgba(255, 255, 255, 0.25);
+  --border-dark: rgba(148, 163, 184, 0.15);
+}
+
+/* ===== NAVBAR BASE ===== */
 .navbar {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  backdrop-filter: blur(10px);
-  padding: 10px 20px;
+
+  padding: 12px 24px;
   z-index: 1000;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  transition: all 0.35s ease;
+  border-bottom: 1px solid transparent;
 }
 
-/* Base navbar (shared improvements) */
-.navbar {
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: all 0.3s ease;
-}
-
-/* 🌞 Light Theme */
+/* ===== THEMES ===== */
 .navbar.light {
-  background: rgba(255, 255, 255, 0.65);
-  color: #0f172a; 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background: var(--glass-light);
+  color: var(--text-light);
+  border-bottom: 1px solid var(--border-light);
+
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
 }
 
 .navbar.dark {
-  background: rgba(2, 6, 23, 0.75); /* navy instead of black */
-  color: #e2e8f0; /* soft white */
+  background: var(--glass-dark);
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-dark);
 
-  /* soft blue glow depth */
-  box-shadow: 0 4px 25px rgba(59, 130, 246, 0.12);
+  box-shadow: 0 6px 30px rgba(59, 130, 246, 0.12);
 }
 
+/* ===== CONTAINER ===== */
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
+/* ===== LOGO ===== */
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: bold;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.5px;
 }
 
+/* ===== MENU ===== */
 .navbar-menu {
   display: flex;
-  gap: 20px;
+  gap: 28px;
   list-style: none;
 }
 
+/* ===== NAV LINKS ===== */
 .nav-link {
+  position: relative;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  padding: 4px 0;
+  transition: all 0.25s ease;
 }
 
+/* Underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--blue);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--blue);
+}
+
+/* ===== ACTION BUTTONS ===== */
 .navbar-actions {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav-btn {
   border: none;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 13px;
+  transition: all 0.25s ease;
 }
 
+/* Primary Button */
 .nav-btn.primary {
-  background: #4f46e5;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
   color: white;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
 }
 
+.nav-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.5);
+}
+
+.nav-btn.primary:active {
+  transform: scale(0.95);
+}
+
+/* Secondary Button */
 .nav-btn.secondary {
   background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
+
+.nav-btn.secondary:hover {
+  background: rgba(148, 163, 184, 0.1);
+}
+
+/* ===== USER MENU ===== */
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
+/* Avatar */
 .user-avatar {
   width: 38px;
   height: 38px;
   border-radius: 50%;
+
   background: linear-gradient(135deg, #64ffda, #3b82f6);
   color: #0a192f;
+
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 14px;
+
   cursor: pointer;
-  transition: 0.3s;
-}
-.navbar-quote {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-
-  /* 🔵 Smooth blue gradient */
-  background: linear-gradient(90deg, #080439, #3b82f6, #02045b);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* ✨ Controlled glow layers */
-  text-shadow:
-    0 0 6px rgba(59, 130, 246, 0.4),
-    0 0 12px rgba(99, 102, 241, 0.25);
-
-  /* 🎯 Smooth animation */
-  animation: glowShift 5s ease-in-out infinite;
-
-  white-space: nowrap;
   transition: all 0.3s ease;
-}
 
-/* Gradient flow */
-@keyframes glowShift {
-  0% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-  100% {
-    background-position: 0% center;
-  }
-}
-
-/* 🖱️ Hover – subtle pop */
-.navbar-quote:hover {
-  transform: translateY(-1px) scale(1.05);
-
-  text-shadow:
-    0 0 10px rgba(59, 130, 246, 0.7),
-    0 0 18px rgba(99, 102, 241, 0.45),
-    0 0 28px rgba(147, 197, 253, 0.3);
+  box-shadow: 0 0 0 transparent;
 }
 
 .user-avatar:hover {
-  transform: scale(1.1);
-}
-.navbar-toggle {
-  display: none;
+  transform: scale(1.12);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
 }
 
+/* ===== QUOTE TEXT ===== */
+.navbar-quote {
+  font-size: 16px;
+  font-weight: 600;
+
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e40af);
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: glowShift 6s ease-in-out infinite;
+
+  white-space: nowrap;
+}
+
+/* Animation */
+@keyframes glowShift {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+.navbar-quote:hover {
+  transform: translateY(-1px) scale(1.05);
+  text-shadow:
+    0 0 10px rgba(59, 130, 246, 0.6),
+    0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+/* ===== MOBILE ===== */
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+/* Mobile Menu */
 .mobile-menu {
   display: none;
 }
 
-/* Mobile */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .desktop-menu {
     display: none;
@@ -166,7 +233,17 @@
   .mobile-menu {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: 14px;
+    padding: 16px;
+
+    border-radius: 12px;
+    margin-top: 10px;
+
+    backdrop-filter: blur(18px);
+    background: rgba(15, 23, 42, 0.85);
+  }
+
+  .nav-link {
+    font-size: 16px;
   }
 }

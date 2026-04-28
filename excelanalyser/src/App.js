@@ -1,19 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
-<<<<<<< HEAD
-import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
-=======
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
+import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+
 import { Upload, DollarSign, ShoppingCart, TrendingUp, Package, Filter, Download, Calendar, Users, Award, RefreshCw } from 'lucide-react';
 import Papa from 'papaparse';
 
 import './App.css';
 import Navbar from './components/Navbar';
 import VisualBuilder from './components/VisualBuilder';
-import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 function Dashboard() {
   const [data, setData] = useState(null);
@@ -43,8 +39,7 @@ function Dashboard() {
   const [outlierGroupBy, setOutlierGroupBy] = useState('');
   const [outlierMode, setOutlierMode] = useState('exclude'); // exclude | flag
   const [outlierShowOnlyFlagged, setOutlierShowOnlyFlagged] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  
+
   // Recommended group-by ordering (low-cardinality first)
   const groupByOptions = useMemo(() => {
     if (!data) return [];
@@ -728,12 +723,6 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
 
   return (
-<<<<<<< HEAD
-<div className={`app ${darkMode ? 'dark' : ''}`}>
-<Navbar darkMode={darkMode} onDarkModeChange={setDarkMode} />
-      <div className="container" id="main-content">
-        <div className="header-section" id="dashboard">
-=======
     <div className="app">
        <Navbar />
 
@@ -741,7 +730,6 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
     <div className="container" style={{ marginTop: "80px" }}>
       <div className="container">
         <div className="header-section">
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
           <div className="header-text">
             <h1>Data Workspace • Insights & Analysis</h1>
             <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
@@ -1415,22 +1403,20 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          {/* LOGIN PAGE */}
-          <Route path="/" element={<Login />} />
-          
-          {/* DASHBOARD PAGE */}
-          <Route 
-            path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-        </Routes>
-      </Router>
+      <Routes>
+        {/* LOGIN PAGE */}
+        <Route path="/" element={<Login />} />
+        
+        {/* DASHBOARD PAGE */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+      </Routes>
     </AuthProvider>
   );
 }

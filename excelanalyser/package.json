@@ -10,14 +10,9 @@
     "firebase": "^12.11.0",
     "lucide-react": "^0.548.0",
     "papaparse": "^5.5.3",
-<<<<<<< HEAD
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-=======
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^7.14.0",
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
     "react-scripts": "5.0.1",
     "recharts": "^3.3.0",
     "web-vitals": "^2.1.4",
@@ -48,3 +43,4 @@
     ]
   }
 }
+

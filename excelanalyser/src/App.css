@@ -20,28 +20,15 @@ body.dark {
 
 .app {
   min-height: 100vh;
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
-=======
   /* background: linear-gradient(135deg, #02121b 0%,rgb(124, 45, 45) 50%, #e2e8f0 100%); */
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
   padding: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-<<<<<<< HEAD
-  transition: all 0.3s ease;
-}
-
-.app.dark {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-  color: var(--text-primary);
-=======
      background: linear-gradient(135deg, #02121b 0%, rgb(124, 45, 45) 50%, #e2e8f0 100%);
 }
 body.dark-mode .app {
   background: linear-gradient(135deg, #020c1b 0%, #0a192f 50%, #020617 100%);
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 }
 
 @media (min-width: 768px) {
@@ -239,13 +226,13 @@ body.dark-mode .app {
 
 .header-text h1 {
   font-size: 2rem;
-  color: #1e293b;
+  color: #ffffff;
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
 }
 
 .app.dark .header-text h1 {
-  color: #deed3e;
+  color: #bccb1b;
 }
 
 @media (min-width: 768px) {
@@ -345,13 +332,6 @@ body.dark-mode .app {
   border-radius: 16px;
   padding: 3rem;
   cursor: pointer;
-<<<<<<< HEAD
-  transition: all 0.3s ease;
-}
-
-.app.dark .upload-area {
-  border-color: #475569;
-=======
 
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
@@ -360,7 +340,6 @@ body.dark-mode .app {
 
   transition: all 0.35s ease;
   overflow: hidden;
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 }
 
 /* 🔥 Gradient glowing border effect */
@@ -392,26 +371,11 @@ body.dark-mode .app {
   border-color: transparent;
 }
 
-<<<<<<< HEAD
-.app.dark .upload-area:hover {
-  background: #334155;
-}
-
-=======
 /* Icon */
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 .upload-icon {
   color: #60a5fa;
   margin-bottom: 1rem;
-<<<<<<< HEAD
-  transition: all 0.3s ease;
-}
-
-.app.dark .upload-icon {
-  color: #94a3b8;
-=======
   transition: transform 0.3s ease;
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 }
 
 .upload-area:hover .upload-icon {
@@ -436,39 +400,13 @@ body.dark-mode .app {
 .upload-text span {
   color: #38bdf8;
   font-weight: 500;
-<<<<<<< HEAD
-  color: #334155;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.app.dark .upload-text {
-  color: #e2e8f0;
-}
-
-@media (min-width: 768px) {
-  .upload-text {
-    font-size: 1.125rem;
-  }
-=======
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 }
 
 /* Subtext */
 .upload-subtext {
   font-size: 0.8rem;
   color: #64748b;
-<<<<<<< HEAD
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.app.dark .upload-subtext {
-  color: #94a3b8;
-=======
   margin-top: 0.4rem;
->>>>>>> c48e31e7ff8c2973a9e67cc79a3f534a5dc1068b
 }
 
 /* Hide input */
