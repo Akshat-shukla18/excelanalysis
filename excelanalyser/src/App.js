@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Upload, DollarSign, ShoppingCart, TrendingUp, Package, Filter, Download, Calendar, Users, Award, RefreshCw } from 'lucide-react';
 import Papa from 'papaparse';
 import './App.css';
+import Navbar from './components/Navbar';
 import VisualBuilder from './components/VisualBuilder';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
   const [outlierGroupBy, setOutlierGroupBy] = useState('');
   const [outlierMode, setOutlierMode] = useState('exclude'); // exclude | flag
   const [outlierShowOnlyFlagged, setOutlierShowOnlyFlagged] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   
   // Recommended group-by ordering (low-cardinality first)
   const groupByOptions = useMemo(() => {
@@ -230,7 +232,7 @@ function App() {
     const salesLike = has('sales') || has('revenue') || has('amount') || has('profit');
     const productLike = has('product') || has('item');
     const isSales = salesLike || (productLike && (has('price') || has('qty') || has('quantity')));
-    // infer numeric & categorical candidates
+    // infer numeric fields only (remove unused categoricalFields)
     const numericFields = headers.filter(h => {
       let countNum = 0;
       for (let i=0; i<Math.min(rows.length,100); i++){
@@ -241,7 +243,6 @@ function App() {
       }
       return countNum > 10;
     });
-    const categoricalFields = headers.filter(h => !numericFields.includes(h));
     setGenericMode(!isSales);
     setGenericMetric(prev => prev || numericFields[0] || headers[0] || '');
     // choose low-cardinality categorical as default group by
@@ -730,9 +731,10 @@ ${metrics.categoryData.map(c => `${c.name}: ${formatCurrency(c.value)}`).join('\
 
 
   return (
-    <div className="app">
-      <div className="container">
-        <div className="header-section">
+<div className={`app ${darkMode ? 'dark' : ''}`}>
+<Navbar darkMode={darkMode} onDarkModeChange={setDarkMode} />
+      <div className="container" id="main-content">
+        <div className="header-section" id="dashboard">
           <div className="header-text">
             <h1>Excel Data AnalyzerDashboard</h1>
             <p>Upload Excel sheets and CSV to analyze your data with advanced filters.</p>
