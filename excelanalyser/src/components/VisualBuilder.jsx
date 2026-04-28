@@ -19,13 +19,19 @@ function inferNumericFields(headers, rows) {
 }
 
 function VisualBuilder({ dataset, onFilterSelect }) {
-  const headers = dataset?.headers || [];
-  const rows = dataset?.rows || [];
+  const headers = useMemo(() => dataset?.headers ?? [], [dataset]);
+const rows = useMemo(() => dataset?.rows ?? [], [dataset]);
 
   const numericFields = useMemo(() => inferNumericFields(headers, rows), [headers, rows]);
 
   const [xField, setXField] = useState(() => headers[0] || '');
-  const [yField, setYField] = useState(() => numericFields[0] || headers[0] || '');
+ const [yField, setYField] = useState('');
+
+useMemo(() => {
+  if (!yField && (numericFields.length || headers.length)) {
+    setYField(numericFields[0] || headers[0]);
+  }
+}, [numericFields, headers]);
   const [agg, setAgg] = useState('sum');
   const [chartType, setChartType] = useState('bar'); // bar | line | area | pie
 
